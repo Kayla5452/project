@@ -1,8 +1,10 @@
 function Footer(){
     return(
-        <div>
-            <h2>Footer</h2>
-        </div>
+        <footer className="card text-center">
+            <div className="card-body">
+                <p>&copy;2021 Bundy Trackers</p>
+            </div>
+        </footer>
     )
 }
 export default Footer;

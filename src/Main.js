@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Landing from "./Landing";
 import Header from "./Header";
 import Footer from "./Footer";
+import Employee from "./EmployeeInformationForm";
 
 //Main function to control which is shown and what is not
 function Main(){
@@ -14,6 +15,7 @@ function Main(){
                 <Header/>
                 <Switch>
                     <Route path="/" exact component={Landing}/>
+                    <Route path="/EmployeeForm" exact component={Employee}/>
                 </Switch>
                 <Footer/>
             </div>
