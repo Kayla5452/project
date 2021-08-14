@@ -18,7 +18,7 @@ function Main(){
                 <Switch>
                     <Route path="/" exact component={Landing}/>
                     <Route path="/Employee/New" exact component={Employee}/>
-                    <Route path="/WorkedHours" exact component={Hours}/>
+                    <Route path="/Payment/WorkedHours" exact component={Hours}/>
                     <Route path="/Employee/Information" exact component={EmployeeInfo}/>
                 </Switch>
                 <Footer/>

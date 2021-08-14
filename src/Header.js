@@ -13,16 +13,16 @@ function Header(){
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">                        
                         <Link to="/" className="nav-link" aria-current="page"><li>Home</li></Link>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Employee Information</a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown"> 
+                            <a className="nav-link dropdown-toggle" href="employeeDropdown" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Employee Information</a>
+                            <ul id="employeeDropdown" className="dropdown-menu" aria-labelledby="navbarDropdown"> 
                                 <Link to="/Employee/New" className="dropdown-item"><li>Add New Employee</li></Link>
                                 <Link to="/Employee/Information" className="dropdown-item"><li>View Employee Information</li></Link>
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Payment Information</a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown2"> 
-                            <Link to="/WorkedHours" className="dropdown-item"><li>Add Hours Worked</li></Link>
+                            <a className="nav-link dropdown-toggle" href="paymentDropdown" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Payment Information</a>
+                            <ul id="paymentDropdown" className="dropdown-menu" aria-labelledby="navbarDropdown2"> 
+                                <Link to="/Payment/WorkedHours" className="dropdown-item"><li>Add Hours Worked</li></Link>
                             </ul>
                         </li>
                     </ul>
