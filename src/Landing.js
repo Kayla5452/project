@@ -10,6 +10,7 @@ function Landing(){
                 <p>Similarly, all payment information will be kept under the Payment/Hours drop down with the path of <code>/Payment/[path]</code> to keep everything sorted.</p>
                 <hr/>
                 <p>If you have any notes on how you built something leave it here with your initials in <code>code tags</code></p>
+                <p>checking if this worked</p>
             </div>
         </div>
     )
