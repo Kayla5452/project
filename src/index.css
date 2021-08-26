@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #eadcc8;
 }
 
 code {
@@ -19,4 +20,28 @@ select[readonly]{
 
 select[readonly] option{
   display:none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+nav {
+  background-color: #120e0e;
+}
+nav div h2 {
+  color:#ffffff;
+}
+nav div div ul li, nav div div ul li a{
+  color: #ffffff;
+}
+
+nav div div ul ul li{
+  background-color: #1d1a1a;
+}
+.card {
+  background-color: #fff3e3;
+}
+footer div {
+  background-color: #120e0e;
+  color: #ffffff;
 }
