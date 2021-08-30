@@ -7,8 +7,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Employee from "./EmployeeInformationForm";
 import Hours from "./HoursWorkedForm";
-import EmployeeInfo from "./EmployeeInfo";
 import EmployeeInfoSelect from "./EmployeeInfoSelect";
+import EmployeeInformation from "./EmployeeInformation";
 
 //Main function to control which is shown and what is not
 function Main(){
@@ -21,7 +21,7 @@ function Main(){
                     <Route path="/Employee/New" exact component={Employee}/>
                     <Route path="/Payment/WorkedHours" exact component={Hours}/>
                     <Route path="/Employee/Information" exact component={EmployeeInfoSelect}/>
-                    <Route path="/Employee/Information/:id" exact compoment={(props)=> <EmployeeInfo {...props} key={window.location.pathname}/>}/>
+                    <Route path="/:id" exact component={(props)=> <EmployeeInformation {...props} key={window.location.pathname}/>}/>
                 </Switch>
                 <Footer/>
             </div>

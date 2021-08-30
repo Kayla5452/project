@@ -23,7 +23,7 @@ function EmployeeInfoSelect(){
                 <h2 className="card-title">Select Employee</h2>
                 <ul className="list-group">
                     {items.map(item => (
-                        <Link to={`/Employee/Information/${item._id}`} className="nav-item linkNoDecoration"><li className="list-group-item linkNoDecoration">{item.FirstName} {item.LastName}</li></Link>
+                        <Link to={`/${item._id}`} className="nav-item linkNoDecoration"><li className="list-group-item linkNoDecoration">{item.FirstName} {item.LastName}</li></Link>
                     ))}
                 </ul>
             </div>
