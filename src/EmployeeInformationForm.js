@@ -30,7 +30,7 @@ function Employee(){
                     </div>
                     <div className="col-md-6">
                         <label for="IRD" className="form-label">IRD Number</label>
-                        <input type="number" className="form-control" id="IRD"></input>
+                        <input type="text" className="form-control" id="IRD"></input>
                     </div>
                     <div className="col-md-6">
                         <label for="TaxCode" className="form-label">Tax Code</label>

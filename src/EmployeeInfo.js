@@ -1,27 +1,32 @@
-function Info(){
+import React, {useState, useEffect} from 'react';
+
+function Info({match}){
+    const [item, setItem] = useState([]);
+
+    useEffect(() => {
+        fetchItem();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const fetchItem = async () => {
+        const url = `https://project-7d68.restdb.io/rest/employee/${match.params.id}`;
+        const data = await fetch(url, {method: 'GET',
+        headers: 
+        { 'cache-control': 'no-cache',
+            'x-apikey': '612aec7343cedb6d1f97ea5f' }});
+        const item = await data.json();
+        setItem(item)
+        console.log(item)
+    };
+
     return(
         <div className="card">
             <div className="card-body">
-                <h2 className="card-title">Employee Information</h2>
-                <label for="searchOption" className="form-label">Search for employee by</label>
-                <select className="form-select" id="searchOption">
-                    <option selected>Choose a search option</option>
-                    <option value="ID">Employee ID</option>
-                    <option value="FName">First Name</option>
-                    <option value="LName">Last Name</option>
-                </select>
-                <button className="btn btn-success mt-1">Search</button>
-                <select className="form-select mt-1" id="results">
-                    <option selected>Results</option>
-                    <option>Result 1</option>
-                    <option>Result 2</option>
-                </select>
-                <hr/>
-                <h3>Current Employee Information</h3>
+                <h3>{item.FirstName}</h3>
                 <form className="row g-3">
                     <div className="col-md-6">
                         <label for="FirstName" className="form-label">First Name</label>
-                        <input type="text" className="form-control" id="FirstName" readOnly></input>
+                        <input type="text" className="form-control" id="FirstName" value="hi" readOnly></input>
                     </div>
                     <div className="col-md-6">
                         <label for="MiddleName" className="form-label">Middle Name/s</label>

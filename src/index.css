@@ -22,7 +22,7 @@ select[readonly] option{
   display:none;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6, label, footer {
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 nav {
@@ -31,17 +31,15 @@ nav {
 nav div h2 {
   color:#ffffff;
 }
-nav div div ul li, nav div div ul li a{
-  color: #ffffff;
-}
 
-nav div div ul ul li{
-  background-color: #1d1a1a;
-}
 .card {
   background-color: #fff3e3;
 }
 footer div {
   background-color: #120e0e;
   color: #ffffff;
+}
+.linkNoDecoration {
+  text-decoration: none;
+  color: #120e0e;
 }
