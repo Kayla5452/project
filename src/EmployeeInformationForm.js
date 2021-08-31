@@ -4,7 +4,8 @@ class EmployeeForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            Name: ''
+            Name: '',
+            LName: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -12,11 +13,13 @@ class EmployeeForm extends React.Component{
     }
 
     handleChange(event){
-        this.setState({Name: event.target.value});
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({[name]: value});
     }
     handleSubmit(event){
-        alert("A name was submitted: "+ this.state.Name);
-
+        alert("Submitted");
         var request = require("request");
 
         var options = { 
@@ -28,7 +31,8 @@ class EmployeeForm extends React.Component{
                 'content-type' : 'application/json'
             },
             body: {
-                Name: this.state.Name
+                Name: this.state.Name,
+                LName: this.state.LName
             },
             json: true
         };
@@ -38,16 +42,19 @@ class EmployeeForm extends React.Component{
             console.log(body);
         });
 
-
+        
+        document.getElementByID("employee").reset();
         event.preventDefault();
     }
 
     render(){
         return(
             <div className="card">
-                <form onSubmit={this.handleSubmit}>
+                <form id="employee" onSubmit={this.handleSubmit}>
                     <label>Name</label>
-                    <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                    <input name="Name" type="text" value={this.state.Name} onChange={this.handleChange}/>
+                    <label>Last Name</label>
+                    <input name="LName" type="text" value={this.state.LName} onChange={this.handleChange}/>
                     <input type="submit" value="Submit"/>
                 </form>
             </div>
