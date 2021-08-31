@@ -21,7 +21,7 @@ function Main(){
                     <Route path="/Employee/New" exact component={Employee}/>
                     <Route path="/Payment/WorkedHours" exact component={Hours}/>
                     <Route path="/Employee/Information" exact component={EmployeeInfoSelect}/>
-                    <Route path="/:id" exact component={(props)=> <EmployeeInformation {...props} key={window.location.pathname}/>}/>
+                    <Route path="/Employee/Information/:id" exact component={(props)=> <EmployeeInformation {...props} key={window.location.pathname}/>}/>
                 </Switch>
                 <Footer/>
             </div>

@@ -1,80 +1,57 @@
-function Employee(){
-    return(
-        <div className="card">
-            <div className="card-body">
-                <h2>Add New Employee</h2>
-                <form className="row g-3">
-                    <div className="col-md-6">
-                        <label for="FirstName" className="form-label">First Name</label>
-                        <input type="text" className="form-control" id="FirstName"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label for="MiddleName" className="form-label">Middle Name/s</label>
-                        <input type="text" className="form-control" id="MiddleName"></input>
-                    </div>
-                    <div className="col-12">
-                        <label for="LastName" className="form-label">Last Name</label>
-                        <input type="text" className="form-control" id="LastName"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label for="Email" className="form-label">Email Address</label>
-                        <input type="email" className="form-control" id="Email"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label for="Phone" className="form-label">Mobile Phone Number</label>
-                        <input type="tel" className="form-control" id="Phone"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label for="EmployeeID" className="form-label">Employee ID</label>
-                        <input type="number" className="form-control" id="EmployeeID"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label for="IRD" className="form-label">IRD Number</label>
-                        <input type="text" className="form-control" id="IRD"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label for="TaxCode" className="form-label">Tax Code</label>
-                        <select className="form-select" aria-label="TaxCode">
-                            <option selected>Select a Tax Code</option>
-                            <option value="M">M</option>
-                            <option value="M SL">M SL</option>
-                        </select>
-                    </div>
-                    <div className="col-md-6">
-                        <label for="PayRate" className="form-label">Pay Rate</label>
-                        <select className="form-select" aria-label="PayTate">
-                            <option selected>Select a Pay Rate</option>
-                            <option value="20">$20.00</option>
-                            <option value="21">$21.00</option>
-                            <option value="22">$22.00</option>
-                        </select>
-                    </div>
-                    <div className="col-12">
-                        <label for="BankAccount" className="form-label">Bank Account Number</label>
-                        <input type="text" className="form-control" id="BankAccount"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label for="StartDate" className="form-label">Start Date</label>
-                        <input type="date" className="form-control" id="StartDate"></input>
-                    </div>
-                    <div className="col-md-6">
-                        <label for="JobTitle" className="form-label">Job Title</label>
-                        <select className="form-select" aria-label="JobTitle">
-                            <option selected>Select a Job Title</option>
-                            <option value="Manager">Manager</option>
-                            <option value="Trainer">Trainer</option>
-                            <option value="Worker">Worker</option>
-                        </select>
-                    </div>
-                    <div className="col-md-6">
-                        <button type="submit" className="btn btn-success">Submit</button>
-                    </div>
-                    <div className="col-md-6">
-                        <button type="reset" className="btn btn-warning">Reset Form</button>
-                    </div>
+import React from "react";
+
+class EmployeeForm extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            Name: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event){
+        this.setState({Name: event.target.value});
+    }
+    handleSubmit(event){
+        alert("A name was submitted: "+ this.state.Name);
+
+        var request = require("request");
+
+        var options = { 
+            method: 'POST',
+            url: 'https://project-7d68.restdb.io/rest/testing',
+            headers: {
+                'cache-control': 'no-cache',
+                'x-apikey': '612aec7343cedb6d1f97ea5f',
+                'content-type' : 'application/json'
+            },
+            body: {
+                Name: this.state.Name
+            },
+            json: true
+        };
+
+        request(options, function (error, response, body ){
+            if (error) throw new Error(error);
+            console.log(body);
+        });
+
+
+        event.preventDefault();
+    }
+
+    render(){
+        return(
+            <div className="card">
+                <form onSubmit={this.handleSubmit}>
+                    <label>Name</label>
+                    <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                    <input type="submit" value="Submit"/>
                 </form>
             </div>
-        </div>
-    )
+        )
+    }
 }
-export default Employee;
+export default EmployeeForm;
