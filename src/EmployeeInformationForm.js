@@ -11,8 +11,8 @@ class EmployeeForm extends React.Component{
             Email: '',
             MobilePhone: '',
             IRD: '',
-            TaxCode: '',
-            PayRate: '',
+            TaxCode: 'M',
+            PayRate: '20',
             BankAccount: '',
             StartDate: '',
             JobRole: 'Worker',
@@ -62,9 +62,7 @@ class EmployeeForm extends React.Component{
             if (error) throw new Error(error);
             console.log(body);
         });
-
         
-        document.getElementByID("employee").reset();
         event.preventDefault();
     };
 
