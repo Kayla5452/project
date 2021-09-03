@@ -9,6 +9,7 @@ import Employee from "./EmployeeInformationForm";
 import Hours from "./HoursWorkedForm";
 import EmployeeInfoSelect from "./EmployeeInfoSelect";
 import EmployeeInformation from "./EmployeeInformation";
+import PayPeriodForm from "./PaymentCycleForm";
 
 //Main function to control which is shown and what is not
 function Main(){
@@ -19,7 +20,8 @@ function Main(){
                 <Switch>
                     <Route path="/" exact component={Landing}/>
                     <Route path="/Employee/New" exact component={Employee}/>
-                    <Route path="/Payment/WorkedHours" exact component={Hours}/>
+                    <Route path="/Payment/WorkedHoursForm" exact component={Hours}/>
+                    <Route path="/Payment/PayPeriodForm" exact component={PayPeriodForm}/>
                     <Route path="/Employee/Information" exact component={EmployeeInfoSelect}/>
                     <Route path="/Employee/Information/:id" exact component={(props)=> <EmployeeInformation {...props} key={window.location.pathname}/>}/>
                 </Switch>

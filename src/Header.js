@@ -22,7 +22,8 @@ function Header(){
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle text-light" href="paymentDropdown" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">Payment Information</a>
                             <ul id="paymentDropdown" className="dropdown-menu" aria-labelledby="navbarDropdown2"> 
-                                <Link to="/Payment/WorkedHours" className="dropdown-item"><li>Add Hours Worked</li></Link>
+                                <Link to="/Payment/WorkedHoursForm" className="dropdown-item"><li>Add Hours Worked</li></Link>
+                                <Link to="/Payment/PayPeriodForm" className="dropdown-item"><li>Add Pay Period</li></Link>
                             </ul>
                         </li>
                     </ul>

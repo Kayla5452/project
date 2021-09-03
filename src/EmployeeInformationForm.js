@@ -64,8 +64,10 @@ class EmployeeForm extends React.Component{
         });
         
         event.preventDefault();
-    };
 
+        setTimeout(() => {window.location.reload()},2000);
+
+    };
 
     render(){
         return(
@@ -141,17 +143,6 @@ class EmployeeForm extends React.Component{
                 </form>
             </div>
         </div>
-
-
-            /*<div className="card">
-                <form id="employee" onSubmit={this.handleSubmit}>
-                    <label>Name</label>
-                    <input name="Name" type="text" value={this.state.Name} onChange={this.handleChange}/>
-                    <label>Last Name</label>
-                    <input name="LName" type="text" value={this.state.LName} onChange={this.handleChange}/>
-                    <input type="submit" value="Submit"/>
-                </form>
-            </div>*/
         )
     }
 }
