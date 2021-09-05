@@ -1,5 +1,16 @@
 import React from "react";
 
+function todayDate(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    return(today)
+}
+
 class EmployeeForm extends React.Component{
     constructor(props){
         super(props);
@@ -14,7 +25,7 @@ class EmployeeForm extends React.Component{
             TaxCode: 'M',
             PayRate: '20',
             BankAccount: '',
-            StartDate: '',
+            StartDate: todayDate(),
             JobRole: 'Worker',
         };
 

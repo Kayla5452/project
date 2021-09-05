@@ -3,6 +3,7 @@ function Footer(){
         <footer className="card text-center">
             <div className="card-body">
                 <p>&copy;2021 Bundy Trackers</p>
+                
             </div>
         </footer>
     )

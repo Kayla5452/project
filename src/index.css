@@ -43,3 +43,9 @@ footer div {
   text-decoration: none;
   color: #120e0e;
 }
+.logoHeader {
+  width: 30px;
+  display: inline;
+  margin-right: 5px;
+  margin-bottom: 7px;
+}
