@@ -1,94 +1,213 @@
-import React, {useState, useEffect} from 'react';
+import React from "react";
+import { Redirect } from "react-router-dom"
 
-function EmployeeItem({match}){
-    const [item, setItem] = useState([]);
+class EmployeeInformation extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            id: window.location.href.substring(window.location.href.lastIndexOf('/') + 1),
+            EmployeeID: '',
+            FirstName: '',
+            MiddleName: '',
+            LastName: '',
+            Email: '',
+            MobilePhone: '',
+            IRD: '',
+            TaxCode: '',
+            PayRate: '',
+            BankAccount: '',
+            StartDate: '',
+            JobRole: '',
+            redirect: null
+        };
 
-    useEffect(() => {
-        fetchItem();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+        this.handleRedirect = this.handleRedirect.bind(this);
+    }
 
-    const fetchItem = async () => {
-        const url = `https://project-7d68.restdb.io/rest/employee/${match.params.id}`;
-        const data = await fetch(url, {method: 'GET',
-        headers: 
-        { 'cache-control': 'no-cache',
-            'x-apikey': '612aec7343cedb6d1f97ea5f' }});
-        const item = await data.json();
-        setItem(item)
+    handleChange(event){
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({[name]: value});
+    }
+    
+    handleSubmit(event){
+        alert("Employee information has been updated");
+        var request = require("request");
+
+        var options = { 
+            method: 'PUT',
+            url: `https://project-7d68.restdb.io/rest/employee/${this.state.id}`,
+            headers: {
+                'cache-control': 'no-cache',
+                'x-apikey': '612aec7343cedb6d1f97ea5f',
+                'content-type' : 'application/json'
+            },
+            body: {
+                EmployeeID: this.state.EmployeeID,
+                FirstName: this.state.FirstName,
+                MiddleName: this.state.MiddleName,
+                LastName: this.state.LastName,
+                Email: this.state.Email,
+                MobilePhone: this.state.MobilePhone,
+                IRD: this.state.IRD,
+                TaxCode: this.state.TaxCode,
+                PayRate: this.state.PayRate,
+                BankAccount: this.state.BankAccount,
+                StartDate: this.state.StartDate,
+                JobRole: this.state.JobRole
+            },
+            json: true
+        };
+
+        request(options, function (error, response, body ){
+            if (error) throw new Error(error);
+            console.log(body);
+        });
+        
+        event.preventDefault();
+
+        setTimeout(() => {window.location.reload()},2000);
+
     };
 
-    return(
-        <div className="card">
-        <div className="card-body">
-            <h3>{item.FirstName} {item.LastName}</h3>
-            <form className="row g-3">
-                <div className="col-md-6">
-                    <label for="FirstName" className="form-label">First Name</label>
-                    <input type="text" className="form-control" id="FirstName" value={`${item.FirstName}`}></input>
-                </div>
-                <div className="col-md-6">
-                    <label for="MiddleName" className="form-label">Middle Name/s</label>
-                    <input type="text" className="form-control" id="MiddleName" value={`${item.MiddleName}`}></input>
-                </div>
-                <div className="col-12">
-                    <label for="LastName" className="form-label">Last Name</label>
-                    <input type="text" className="form-control" id="LastName" value={`${item.LastName}`}></input>
-                </div>
-                <div className="col-md-6">
-                    <label for="Email" className="form-label">Email Address</label>
-                    <input type="email" className="form-control" id="Email" value={`${item.Email}`}></input>
-                </div>
-                <div className="col-md-6">
-                    <label for="Phone" className="form-label">Mobile Phone Number</label>
-                    <input type="tel" className="form-control" id="Phone" value={`${item.MobilePhone}`}></input>
-                </div>
-                <div className="col-md-6">
-                    <label for="EmployeeID" className="form-label">Employee ID</label>
-                    <input type="number" className="form-control" id="EmployeeID" value={`${item.EmployeeID}`}></input>
-                </div>
-                <div className="col-md-6">
-                    <label for="IRD" className="form-label">IRD Number</label>
-                    <input type="text" className="form-control" id="IRD"  value={`${item.IRD}`}></input>
-                </div>
-                <div className="col-md-6">
-                    <label for="TaxCode" className="form-label">Tax Code</label>
-                    <input type="text" className="form-control" id="TaxCode"  value={`${item.TaxCode}`}></input>
-                </div>
-                <div className="col-md-6">
-                    <label for="PayRate" className="form-label">Pay Rate</label>
-                    <input type="number" className="form-control" id="PayRate"  value={`${item.PayRate}`}></input>
-                </div>
-                <div className="col-12">
-                    <label for="BankAccount" className="form-label">Bank Account Number</label>
-                    <input type="text" className="form-control" id="BankAccount" value={`${item.BankAccount}`}></input>
-                </div>
-                <div className="col-md-6">
-                    <label for="StartDate" className="form-label">Start Date</label>
-                    <input type="date" className="form-control" id="StartDate" value={`${item.StartDate}`.toString().slice(0,10)}></input>
-                </div>
-                <div className="col-md-6">
-                    <label for="JobTitle" className="form-label">Job Title</label>
-                    <input type="text" className="form-control" id="JobTitle"  value={`${item.JobRole}`}></input>
-                </div>
-                <div className="col-sm-3">
-                    <button className="btn btn-info" disabled>Edit</button>
-                </div>
-                <div className="col-sm-3">
-                    <button className="btn btn-warning" disabled>Reset</button>
-                </div>
-                
-                <div className="col-sm-3">
-                    <button className="btn btn-success" disabled>Update</button>
-                </div>
-                
-                <div className="col-sm-3">
-                    <button className="btn btn-danger" disabled>Delete</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    );
-}
+    handleDelete(event){
+        var request = require("request");
+        var options = { 
+            method: 'DELETE',
+            url: `https://project-7d68.restdb.io/rest/employee/${this.state.id}`,
+            headers: { 
+                'cache-control': 'no-cache',
+                'x-apikey': '612aec7343cedb6d1f97ea5f',
+                'content-type': 'application/json' 
+            } 
+        };
+        request(options, function (error, response, body) {
+            if (error) throw new Error(error);
+            console.log(body);
+        });
 
-export default EmployeeItem;
+        alert(`${this.state.FirstName} ${this.state.LastName} has been deleted from the database`)
+
+        setTimeout(() => {this.handleRedirect()},2000);
+    }
+
+    handleRedirect(event){
+        this.setState({redirect: "/Employee/Information"})
+    }
+
+    componentDidMount() {
+        fetch(`https://project-7d68.restdb.io/rest/employee/${this.state.id}`, {method:"GET", headers: {'cache-control': 'no-cache','x-apikey': '612aec7343cedb6d1f97ea5f'}})
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                EmployeeID: result.EmployeeID,
+                FirstName: result.FirstName,
+                MiddleName: result.MiddleName,
+                LastName: result.LastName,
+                Email: result.Email,
+                MobilePhone: result.MobilePhone,
+                IRD: result.IRD,
+                TaxCode: result.TaxCode,
+                PayRate: result.PayRate,
+                BankAccount: result.BankAccount,
+                StartDate: result.StartDate,
+                JobRole: result.JobRole
+                });
+            },
+            
+            // (error) => {
+            //     this.setState({
+            //     isLoaded: true,
+            //     error
+            //     });
+            // }
+        )
+    }
+
+    render(){
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect}/>
+        }
+        return(
+            <div className="card">
+                <div className="card-body">
+                    <h2>{this.state.FirstName} {this.state.LastName}</h2>
+                    <form className="row g-3" onSubmit={this.handleSubmit}>
+                        <div className="col-md-6">
+                            <label for="FirstName" className="form-label">First Name</label>
+                            <input type="text" className="form-control" id="FirstName" name="FirstName" required value={this.state.FirstName} onChange={this.handleChange}></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label for="MiddleName" className="form-label">Middle Name/s</label>
+                            <input type="text" className="form-control" id="MiddleName" name="MiddleName" value={this.state.MiddleName} onChange={this.handleChange}></input>
+                        </div>
+                        <div className="col-12">
+                            <label for="LastName" className="form-label">Last Name</label>
+                            <input type="text" className="form-control" id="LastName" name="LastName" required value={this.state.LastName} onChange={this.handleChange}></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label for="Email" className="form-label">Email Address</label>
+                            <input type="email" className="form-control" id="Email" name="Email" required value={this.state.Email} onChange={this.handleChange}></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label for="Phone" className="form-label">Mobile Phone Number</label>
+                            <input type="tel" className="form-control" id="Phone" name="MobilePhone" required value={this.state.MobilePhone} onChange={this.handleChange}></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label for="EmployeeID" className="form-label">Employee ID</label>
+                            <input type="number" className="form-control" id="EmployeeID" name="EmployeeID" required value={this.state.EmployeeID} onChange={this.handleChange}></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label for="IRD" className="form-label">IRD Number</label>
+                            <input type="text" className="form-control" id="IRD" name="IRD" required value={this.state.IRD} onChange={this.handleChange}></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label for="TaxCode" className="form-label">Tax Code</label>
+                            <select className="form-select" aria-label="TaxCode" name="TaxCode" value={this.state.TaxCode} onChange={this.handleChange}>
+                                <option value="M">M</option>
+                                <option value="M SL">M SL</option>
+                            </select>
+                        </div>
+                        <div className="col-md-6">
+                            <label for="PayRate" className="form-label">Pay Rate</label>
+                            <select className="form-select" aria-label="PayRate" name="PayRate" value={this.state.PayRate} onChange={this.handleChange}>
+                                <option value="20">$20.00</option>
+                                <option value="21">$21.00</option>
+                                <option value="22">$22.00</option>
+                            </select>
+                        </div>
+                        <div className="col-12">
+                            <label for="BankAccount" className="form-label">Bank Account Number</label>
+                            <input type="text" className="form-control" id="BankAccount" name="BankAccount" required value={this.state.BankAccount} onChange={this.handleChange}></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label for="StartDate" className="form-label">Start Date</label>
+                            <input type="date" className="form-control" id="StartDate" name="StartDate" required value={`${this.state.StartDate}`.toString().slice(0,10)}onChange={this.handleChange}></input>
+                        </div>
+                        <div className="col-md-6">
+                            <label for="JobTitle" className="form-label">Job Title</label>
+                            <select className="form-select" aria-label="JobTitle" name="JobRole" value={this.state.JobRole} onChange={this.handleChange}>
+                                <option value="Manager">Manager</option>
+                                <option value="Trainer">Trainer</option>
+                                <option value="Worker" >Worker</option>
+                            </select>
+                        </div>
+                        <div className="col-md-6">
+                            <button type="submit" className="btn btn-success">Update</button>
+                        </div>
+                        <div className="col-md-6">
+                            <button type="button" className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        )
+    }
+    
+}
+export default EmployeeInformation;
