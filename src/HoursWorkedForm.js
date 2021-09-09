@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from "react-router-dom";
 
 class Payment extends React.Component{
     constructor(props){
@@ -6,10 +7,12 @@ class Payment extends React.Component{
         this.state = {
             EmployeeID: '',
             HoursWorked: '',
-            PayPeriodID: ''
+            PayPeriodID: '',
+            redirect: null
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRedirect = this.handleRedirect.bind(this);
     }
 
     handleChange(event) {
@@ -20,31 +23,33 @@ class Payment extends React.Component{
     }
 
     handleSubmit(event){
-        alert("Your hours worked have been submitted");
-        var request = require("request")
-        var options = {
-            method: 'POST',
-            url: 'https://project-7d68.restdb.io/rest/payment',
-            headers: {
-                'cache-control': 'no-cache',
-                'x-apikey': '612aec7343cedb6d1f97ea5f',
-                'content-type' : 'application/json'
-            },
-            body: {
-                EmployeeID: this.state.EmployeeID,
-                HoursWorked: this.state.HoursWorked,
-                PayPeriodID: this.state.PayPeriodID
-            },
-            json: true
+        alert("Payment has been added")
+        const data = {
+            EmployeeID: this.state.EmployeeID,
+            HoursWorked: this.state.HoursWorked,
+            PayPeriodID: this.state.PayPeriodID
         };
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-            console.log(body);
+        const url = 'https://project-7d68.restdb.io/rest/payment';
+
+        fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json','cache-control': 'no-cache','x-apikey': '612aec7343cedb6d1f97ea5f'}, body: JSON.stringify(data)})
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.log('Error:', error);
         });
+
         event.preventDefault();
-        setTimeout(() => {window.location.reload()},2000)
+        setTimeout(() => {this.handleRedirect()},2000)
+    }
+
+    handleRedirect(){
+        this.setState({redirect: "/Payment/Information"})
     }
     render(){
+        if(this.state.redirect){
+            return <Redirect to={this.state.redirect}/>
+        }
         return(
             <div className="card">
                 <div className="card-body">
@@ -63,10 +68,10 @@ class Payment extends React.Component{
                             <input type="number" className="form-control" id="PayPeriodID" name="PayPeriodID" required value={this.state.PayPeriodID} onChange={this.handleChange}></input>
                         </div>
                         <div className="col-md-4">
-                            <input className="btn btn-success" type="submit" value="Submit"></input>
+                            <button className="btn btn-success" type="submit" value="Submit">Submit</button>
                         </div>
                         <div className="col-md-4">
-                            <input className="btn btn-warning" type="reset" value="Reset"></input>
+                            <button className="btn btn-warning" type="reset" value="Reset">Reset</button>
                         </div>
                     </form>
                 </div>

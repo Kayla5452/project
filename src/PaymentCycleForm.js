@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 function todayDate(){
     var today = new Date();
@@ -18,49 +19,51 @@ class PaymentCycle extends React.Component{
             StartDate: todayDate(),
             EndDate: todayDate(),
             BillingCycle: '',
+            redirect: null
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRedirect = this.handleRedirect.bind(this);
     }
 
     handleChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-
         this.setState({[name]: value});
+    }
+
+    handleRedirect(){
+        this.setState({redirect: "/Payment/PayPeriod"})
     }
 
     handleSubmit(event){
         alert("Your new Pay Period has been submitted");
-        var request = require("request");
-
-        var options = { 
-            method: 'POST',
-            url: 'https://project-7d68.restdb.io/rest/payperiod',
-            headers: {
-                'cache-control': 'no-cache',
-                'x-apikey': '612aec7343cedb6d1f97ea5f',
-                'content-type' : 'application/json'
-            },
-            body: {
-                StartDate: this.state.StartDate,
-                EndDate: this.state.EndDate,
-                BillingCycle: this.state.BillingCycle
-            },
-            json: true
-        };
-
-        request(options, function (error, response, body ){
-            if (error) throw new Error(error);
-            console.log(body);
+        
+        const data = {
+            StartDate: this.state.StartDate,
+            EndDate: this.state.EndDate,
+            BillingCycle: this.state.BillingCycle
+        }
+        const url = 'https://project-7d68.restdb.io/rest/payperiod'
+        
+        fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json','cache-control': 'no-cache','x-apikey': '612aec7343cedb6d1f97ea5f'}, body: JSON.stringify(data)})
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);;
+        })
+        .catch((error) => {
+            console.error('Error: ',error)
         });
         
         event.preventDefault();
-        setTimeout(() => {window.location.reload()},2000);
+        setTimeout(() => {this.handleRedirect()},2000);
     }
     render(){
+        if(this.state.redirect){
+            return <Redirect to={this.state.redirect}/>
+        }
         return(
             <div className="card">
                 <div className="card-body">

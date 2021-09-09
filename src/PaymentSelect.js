@@ -26,7 +26,7 @@ function PaymentSelect(){
                 <h2 className="card-title">Select Payment</h2>
                 <ul className="list-group">
                     {options.map(option => (
-                        <Link to={`/Payment/Information/${option._id}`} className="nav-link linkNoDecoration"><li className="list-group-item linkNoDecoration">Payment {option.PaymentID} for {option.EmployeeID} for {option.HoursWorked} hours worked</li></Link>
+                        <Link to={`/Payment/Information/${option._id}`} className="list-group-item nav-link linkNoDecoration"><li className="list-group-item linkNoDecoration">Payment {option.PaymentID} for {option.EmployeeID} for {option.HoursWorked} hours worked</li></Link>
                     ))}
                 </ul>
             </div>

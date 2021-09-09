@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect} from "react-router-dom";
 
 function todayDate(){
     var today = new Date();
@@ -27,10 +28,12 @@ class EmployeeForm extends React.Component{
             BankAccount: '',
             StartDate: todayDate(),
             JobRole: 'Worker',
+            redirect: null
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRedirect = this.handleRedirect.bind(this);
     }
 
     handleChange(event){
@@ -42,45 +45,45 @@ class EmployeeForm extends React.Component{
 
     handleSubmit(event){
         alert("Your new employee has been submitted");
-        var request = require("request");
-
-        var options = { 
-            method: 'POST',
-            url: 'https://project-7d68.restdb.io/rest/employee',
-            headers: {
-                'cache-control': 'no-cache',
-                'x-apikey': '612aec7343cedb6d1f97ea5f',
-                'content-type' : 'application/json'
-            },
-            body: {
-                EmployeeID: this.state.EmployeeID,
-                FirstName: this.state.FirstName,
-                MiddleName: this.state.MiddleName,
-                LastName: this.state.LastName,
-                Email: this.state.Email,
-                MobilePhone: this.state.MobilePhone,
-                IRD: this.state.IRD,
-                TaxCode: this.state.TaxCode,
-                PayRate: this.state.PayRate,
-                BankAccount: this.state.BankAccount,
-                StartDate: this.state.StartDate,
-                JobRole: this.state.JobRole
-            },
-            json: true
-        };
-
-        request(options, function (error, response, body ){
-            if (error) throw new Error(error);
-            console.log(body);
+        
+        const data = {
+            EmployeeID: this.state.EmployeeID,
+            FirstName: this.state.FirstName,
+            MiddleName: this.state.MiddleName,
+            LastName: this.state.LastName,
+            Email: this.state.Email,
+            MobilePhone: this.state.MobilePhone,
+            IRD: this.state.IRD,
+            TaxCode: this.state.TaxCode,
+            PayRate: this.state.PayRate,
+            BankAccount: this.state.BankAccount,
+            StartDate: this.state.StartDate,
+            JobRole: this.state.JobRole
+        }
+        
+        const url = "https://project-7d68.restdb.io/rest/employee"
+        
+        fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json','cache-control': 'no-cache','x-apikey': '612aec7343cedb6d1f97ea5f'}, body: JSON.stringify(data)})
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);;
+        })
+        .catch((error) => {
+            console.error('Error: ',error)
         });
         
         event.preventDefault();
-
-        setTimeout(() => {window.location.reload()},2000);
-
+        setTimeout(() => {this.handleRedirect()},2000);
     };
+    
+    handleRedirect(){
+        this.setState({redirect: "/Employee/Information"})
+    }
 
     render(){
+        if(this.state.redirect){
+            return <Redirect to={this.state.redirect} />
+        }
         return(
             <div className="card">
             <div className="card-body">

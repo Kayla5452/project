@@ -36,58 +36,45 @@ class EmployeeInformation extends React.Component{
     
     handleSubmit(event){
         alert("Employee information has been updated");
-        var request = require("request");
 
-        var options = { 
-            method: 'PUT',
-            url: `https://project-7d68.restdb.io/rest/employee/${this.state.id}`,
-            headers: {
-                'cache-control': 'no-cache',
-                'x-apikey': '612aec7343cedb6d1f97ea5f',
-                'content-type' : 'application/json'
-            },
-            body: {
-                EmployeeID: this.state.EmployeeID,
-                FirstName: this.state.FirstName,
-                MiddleName: this.state.MiddleName,
-                LastName: this.state.LastName,
-                Email: this.state.Email,
-                MobilePhone: this.state.MobilePhone,
-                IRD: this.state.IRD,
-                TaxCode: this.state.TaxCode,
-                PayRate: this.state.PayRate,
-                BankAccount: this.state.BankAccount,
-                StartDate: this.state.StartDate,
-                JobRole: this.state.JobRole
-            },
-            json: true
-        };
-
-        request(options, function (error, response, body ){
-            if (error) throw new Error(error);
-            console.log(body);
-        });
+        const data = {
+            EmployeeID: this.state.EmployeeID,
+            FirstName: this.state.FirstName,
+            MiddleName: this.state.MiddleName,
+            LastName: this.state.LastName,
+            Email: this.state.Email,
+            MobilePhone: this.state.MobilePhone,
+            IRD: this.state.IRD,
+            TaxCode: this.state.TaxCode,
+            PayRate: this.state.PayRate,
+            BankAccount: this.state.BankAccount,
+            StartDate: this.state.StartDate,
+            JobRole: this.state.JobRole
+        }
         
+        const url = `https://project-7d68.restdb.io/rest/employee/${this.state.id}`
+
+        fetch(url, {method: 'PUT', headers: {'Content-Type': 'application/json','cache-control': 'no-cache','x-apikey': '612aec7343cedb6d1f97ea5f'}, body: JSON.stringify(data)})
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);;
+        })
+        .catch((error) => {
+            console.error('Error: ',error)
+        });
+
         event.preventDefault();
-
-        setTimeout(() => {window.location.reload()},2000);
-
     };
 
-    handleDelete(event){
-        var request = require("request");
-        var options = { 
-            method: 'DELETE',
-            url: `https://project-7d68.restdb.io/rest/employee/${this.state.id}`,
-            headers: { 
-                'cache-control': 'no-cache',
-                'x-apikey': '612aec7343cedb6d1f97ea5f',
-                'content-type': 'application/json' 
-            } 
-        };
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-            console.log(body);
+    handleDelete(){
+        const url = `https://project-7d68.restdb.io/rest/employee/${this.state.id}`
+
+        fetch(url, {method: 'DELETE', headers: {'Content-Type': 'application/json','cache-control': 'no-cache','x-apikey': '612aec7343cedb6d1f97ea5f'}})
+        .then(
+            console.log('Success')
+        )
+        .catch((error) => {
+            console.error('Error: ',error)
         });
 
         alert(`${this.state.FirstName} ${this.state.LastName} has been deleted from the database`)
@@ -95,12 +82,12 @@ class EmployeeInformation extends React.Component{
         setTimeout(() => {this.handleRedirect()},2000);
     }
 
-    handleRedirect(event){
+    handleRedirect(){
         this.setState({redirect: "/Employee/Information"})
     }
 
     componentDidMount() {
-        fetch(`https://project-7d68.restdb.io/rest/employee/${this.state.id}`, {method:"GET", headers: {'cache-control': 'no-cache','x-apikey': '612aec7343cedb6d1f97ea5f'}})
+        fetch(`https://project-7d68.restdb.io/rest/employee/${this.state.id}`, {method:"GET", headers: {'Content-Type': 'application/json','cache-control': 'no-cache','x-apikey': '612aec7343cedb6d1f97ea5f'}})
         .then(res => res.json())
         .then(
             (result) => {
@@ -120,12 +107,9 @@ class EmployeeInformation extends React.Component{
                 });
             },
             
-            // (error) => {
-            //     this.setState({
-            //     isLoaded: true,
-            //     error
-            //     });
-            // }
+            (error) => {
+                console.log('Error:',error);
+            }
         )
     }
 
