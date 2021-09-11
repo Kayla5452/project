@@ -2,15 +2,13 @@ function Landing(){
     return(
         <div className="card">
             <div className="card-body">
-                <h2>Landing</h2>
-                <p>This is the landing page.</p>
-                <p>It will serve as a navigation information page until it has been filled with relevant content.</p>
+                <h2>Bundy Tracker</h2>
+                <p>Welcome to the official Bundy Tracker™ website. The ‘top-of-the-line’ general industry timesheet management and creation system for the workplace.</p>
                 <hr/>
-                <p>All employee information will be organised under the employee navigation drop down with a path of <code>/Employee/[path]</code> to keep everything sorted.</p>
-                <p>Similarly, all payment information will be kept under the Payment/Hours drop down with the path of <code>/Payment/[path]</code> to keep everything sorted.</p>
+                <p>To get started and document any new employee to the company or look for any existing employee information, navigate to the ‘Employee Information’ tab at the top of the screen and click on the desired link seen in the drop-down menu.</p>
+                <p>To get started on adding hours that have been worked on that current pay period, navigate to the ‘Payment Information’ tab at the top of the screen.</p>
                 <hr/>
-                <p>If you have any notes on how you built something leave it here with your initials in <code>code tags</code></p>
-                <p>checking if this worked</p>
+                <p>Any other questions/concerns you may have relating to this website, please refer to the information provided in the footer. Thank you for using our service.</p>
             </div>
         </div>
     )
