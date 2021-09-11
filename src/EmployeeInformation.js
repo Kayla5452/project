@@ -57,7 +57,7 @@ class EmployeeInformation extends React.Component{
         fetch(url, {method: 'PUT', headers: {'Content-Type': 'application/json','cache-control': 'no-cache','x-apikey': '612aec7343cedb6d1f97ea5f'}, body: JSON.stringify(data)})
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);;
+            console.log('Success:', data);
         })
         .catch((error) => {
             console.error('Error: ',error)
@@ -78,7 +78,6 @@ class EmployeeInformation extends React.Component{
         });
 
         alert(`${this.state.FirstName} ${this.state.LastName} has been deleted from the database`)
-
         setTimeout(() => {this.handleRedirect()},2000);
     }
 
@@ -171,7 +170,7 @@ class EmployeeInformation extends React.Component{
                         </div>
                         <div className="col-md-6">
                             <label for="StartDate" className="form-label">Start Date</label>
-                            <input type="date" className="form-control" id="StartDate" name="StartDate" required value={`${this.state.StartDate}`.toString().slice(0,10)}onChange={this.handleChange}></input>
+                            <input type="date" className="form-control" id="StartDate" name="StartDate" required value={`${this.state.StartDate}`.toString().slice(0,10)} onChange={this.handleChange}></input>
                         </div>
                         <div className="col-md-6">
                             <label for="JobTitle" className="form-label">Job Title</label>

@@ -6,7 +6,7 @@ import Landing from "./Landing";
 import Header from "./Header";
 import Footer from "./Footer";
 import Employee from "./EmployeeInformationForm";
-import Hours from "./HoursWorkedForm";
+import Payment from "./PaymentForm";
 import EmployeeInfoSelect from "./EmployeeInfoSelect";
 import EmployeeInformation from "./EmployeeInformation";
 import PayPeriodForm from "./PaymentCycleForm";
@@ -26,7 +26,7 @@ function Main(){
                     <Route path="/Employee/New" exact component={Employee}/>
                     <Route path="/Employee/Information" exact component={EmployeeInfoSelect}/>
                     <Route path="/Employee/Information/:id" exact component={(props)=> <EmployeeInformation {...props} key={window.location.pathname}/>}/>
-                    <Route path="/Payment/PaymentForm" exact component={Hours}/>
+                    <Route path="/Payment/PaymentForm" exact component={Payment}/>
                     <Route path="/Payment/Information" exact component={PaymentSelect}/>
                     <Route path="/Payment/Information/:id" exact component={(props)=> <PaymentInfo {...props} key={window.location.pathname}/>}/>
                     <Route path="/Payment/PayPeriodForm" exact component={PayPeriodForm}/>
