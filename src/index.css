@@ -34,8 +34,9 @@ nav div h2 {
 
 .card {
   background-color: #fff3e3;
-  margin-top: 15px;
+  margin-top: auto;
 }
+
 footer div {
   background-color: #120e0e;
   color: #ffffff;
