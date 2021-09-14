@@ -27,6 +27,7 @@ h1,h2,h3,h4,h5,h6, label, footer {
 }
 .navbar {
   background-color: #120e0e;
+  color:#fff3e3;
 }
 nav div h2 {
   color:#fff3e3;
