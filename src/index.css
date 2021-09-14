@@ -27,7 +27,6 @@ h1,h2,h3,h4,h5,h6, label, footer {
 }
 .navbar {
   background-color: #120e0e;
-  position: fixed;
   width: 100%;
 }
 nav div h2 {
@@ -41,7 +40,6 @@ nav div h2 {
 footer div {
   background-color: #120e0e;
   color: #ffffff;
-  position: fixed;
   width: 100%;
 }
 .linkNoDecoration {
