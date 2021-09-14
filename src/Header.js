@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 
 function Header(){
     return(
-        <nav class="navbar navbar-expand-lg navbar-light teborder">
+        <nav class="navbar fixed-top navbar-light teborder">
             <div class="container-fluid">
                 <Link to="/" className="navbar-brand"><h2><img className="logoHeader" alt="Bundy Trackers Logo" src="icon/logo.png"/>Bundy Trackers</h2></Link>
                 <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
