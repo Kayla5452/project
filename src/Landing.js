@@ -1,6 +1,6 @@
 function Landing(){
     return(
-        <div className="card maginBody">
+        <div className="card">
             <div className="card-body">
                 <h2>Bundy Trackers</h2>
                 <p>Welcome to the official Bundy Trackers™ website. The ‘top-of-the-line’ general industry timesheet management and creation system for the workplace.</p>
