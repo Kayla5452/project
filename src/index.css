@@ -41,7 +41,6 @@ nav div h2 {
 footer div {
   background-color: #120e0e;
   color: #fff3e3;
-  align-content: center;
 }
 .linkNoDecoration {
   text-decoration: none;
@@ -52,4 +51,8 @@ footer div {
   display: inline;
   margin-right: 5px;
   margin-bottom: 7px;
+}
+
+.fixed-bottom{
+  align-content: center;
 }
