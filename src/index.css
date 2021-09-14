@@ -29,6 +29,7 @@ h1,h2,h3,h4,h5,h6, label, footer {
 .LandingTitle{
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
+  text-decoration: solid;
 }
 
 .landingImg{
