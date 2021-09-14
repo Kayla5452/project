@@ -31,6 +31,13 @@ h1,h2,h3,h4,h5,h6, label, footer {
   text-align: center;
 }
 
+.landingImg{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .navbar {
   background-color: #120e0e;
   color:#fff3e3;
