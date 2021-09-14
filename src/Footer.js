@@ -1,7 +1,7 @@
 function Footer(){
     return(
-        <footer className="navbar fixed-bottom text-center">
-            <div className="container-fluid">
+        <footer className="navbar fixed-bottom">
+            <div className="container-fluid text-center">
                 <p>&copy;2021 Bundy Trackers</p>
             </div>
         </footer>
