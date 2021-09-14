@@ -29,7 +29,7 @@ h1,h2,h3,h4,h5,h6, label, footer {
   background-color: #120e0e;
 }
 nav div h2 {
-  color:#ffffff;
+  color:#fff3e3;
 }
 
 .card {
@@ -39,7 +39,8 @@ nav div h2 {
 
 footer div {
   background-color: #120e0e;
-  color: #ffffff;
+  color: #fff3e3;
+  text-align: center;
 }
 .linkNoDecoration {
   text-decoration: none;
@@ -50,8 +51,4 @@ footer div {
   display: inline;
   margin-right: 5px;
   margin-bottom: 7px;
-}
-
-.fixed-bottom{
-  text-align: center;
 }
