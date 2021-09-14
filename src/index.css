@@ -52,9 +52,3 @@ footer div {
   margin-right: 5px;
   margin-bottom: 7px;
 }
-
-.text-center{
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-}
