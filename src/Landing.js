@@ -2,6 +2,7 @@ function Landing(){
     return(
         <div className="card">
             <div className="card-body">
+                <img alt="Bundy Trackers Logo" src="icon/android-chrome-192x192.png"/>
                 <h2 className="LandingTitle">Bundy Trackers</h2>
                 <p>Welcome to the official Bundy Trackers™ website. The ‘top-of-the-line’ general industry timesheet management and creation system for the workplace.</p>
                 <hr/>
