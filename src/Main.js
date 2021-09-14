@@ -14,6 +14,8 @@ import PayPeriodSelect from "./PayPeriodSelect";
 import PayPeriodInfo from "./PayPeriodInfo";
 import PaymentSelect from "./PaymentSelect";
 import PaymentInfo from "./PaymentInfo";
+import Testing from "./Testing";
+import TestingForm from "./TestingForm";
 
 //Main function to control which is shown and what is not
 function Main(){
@@ -32,6 +34,9 @@ function Main(){
                     <Route path="/Payment/PayPeriodForm" exact component={PayPeriodForm}/>
                     <Route path="/Payment/PayPeriod" exact component={PayPeriodSelect}/>
                     <Route path="/Payment/PayPeriod/:id" exact component={(props)=> <PayPeriodInfo {...props} key={window.location.pathname}/>}/>
+
+                    <Route path="/Testing" exact component={Testing}/>
+                    <Route path="/Testing/Form" exact component={TestingForm}/>
                 </Switch>
                 <Footer/>
             </div>

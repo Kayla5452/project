@@ -28,6 +28,13 @@ function Header(){
                                 <Link to="/Payment/PayPeriod" className="dropdown-item"><li>View Pay Periods</li></Link>
                             </ul>
                         </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle text-light" href="testingDropdown" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">Testing</a>
+                            <ul id="testingDropdown" className="dropdown-menu" aria-labelledby="navbarDropdown3"> 
+                                <Link to="/Testing/Form" className="dropdown-item"><li>Testing Form</li></Link>
+                                <Link to="/Testing" className="dropdown-item"><li>Testing Info</li></Link>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
