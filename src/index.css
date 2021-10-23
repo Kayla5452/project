@@ -25,20 +25,36 @@ select[readonly] option{
 h1,h2,h3,h4,h5,h6, label, footer {
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+.LandingTitle{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+  text-decoration: solid;
+}
+
+.landingImg{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .navbar {
   background-color: #120e0e;
+  color:#fff3e3;
 }
 nav div h2 {
-  color:#ffffff;
+  color:#fff3e3;
 }
 
 .card {
   background-color: #fff3e3;
-  margin-top: 15px;
+  margin-top: 95px;
+  margin-bottom: 95px;
 }
+
 footer div {
   background-color: #120e0e;
-  color: #ffffff;
+  color: #fff3e3;
 }
 .linkNoDecoration {
   text-decoration: none;
@@ -49,4 +65,8 @@ footer div {
   display: inline;
   margin-right: 5px;
   margin-bottom: 7px;
+}
+
+.fixed-bottom{
+  padding-top: 22px;
 }
